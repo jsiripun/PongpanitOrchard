@@ -93,6 +93,14 @@
     background-size:     cover;
   }
   
+  .lang_symbol {
+	width: 25px;
+	height: 25px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+  }
+  
   .thumbnail {
       padding: 0 0 0 0;
       border: none;
@@ -155,6 +163,10 @@
   </style>
   <script>
 $(document).ready(function(){
+	// begin with english showing automatically
+	$('.lang-en').show();
+	$('.lang-th').hide();
+	
   // Add smooth scrolling to all links in navbar + footer link
   $(".navbar a, footer a[href='#top']").on('click', function(event) {
     // Make sure this.hash has a value before overriding default behavior
@@ -187,12 +199,26 @@ $(document).ready(function(){
         }
     });
   });
+  
+  
+  $('#language_symbol').click(function(){ 
+	// if english is showing, show thai_symbol
+	// if thai is showing, show english
+	 $(".lang-en").toggle();
+	 $(".lang-th").toggle();
+	 
+	  var src = ($(this).attr('src') === 'images/thai_symbol.png')
+            ? 'images/english_symbol.png'
+            : 'images/thai_symbol.png';
+         $(this).attr('src', src);
+  });
 })
 </script>
   
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
 
+<div id="page-en">
 <!-- NAVIGATION BAR -->
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
@@ -202,13 +228,16 @@ $(document).ready(function(){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="#">Pongpanit Orchard</a>
+      <a class="navbar-brand lang-en" href="#">Pongpanit Orchard</a>
+	  <a class="navbar-brand lang-th" href="#"> สวนพงษ์พานิช</a>
+	 
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#farm">ABOUT</a></li>
         <li><a href="#product">PRODUCTS</a></li>
         <li><a href="#contact">CONTACT</a></li>
+		<li><a href="#"><img src="images/thai_symbol.png" id="language_symbol" class="img-responsive lang_symbol"></img></a></li>
       </ul>
     </div>
   </div>
@@ -216,7 +245,8 @@ $(document).ready(function(){
 
 <!-- TOP INFO -->
 <div id="top" class="container-fluid bg-1 text-center">
-  <h1>Pongpanit Orchard</h1>
+  <h1 class="lang-en">Pongpanit Orchard</h1>
+  <h1 class="lang-th"> สวนพงษ์พานิช</h1>
   <img src="images/durian.jpg" class="img-circle img-responsive" style="display:inline" alt="Durian">
   <h3>Organic and delicious durian</h3>
 </div>
@@ -291,8 +321,15 @@ $(document).ready(function(){
   <a href="#top" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
-  <p>Pongpanit Orchard</p>
+  <p class="lang-en">Pongpanit Orchard</p>
+  <p class="lang-th"> สวนพงษ์พานิช</p>
 </footer>
+
+</div>
+
+
+
+
 
 </body>
 </html>
